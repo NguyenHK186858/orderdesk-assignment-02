@@ -34,6 +34,10 @@ function approve(returnRequest, clerkId, reason) {
     throw new Error('a refund approval must carry a reason');
   }
 
+  if (returnRequest.raisedBy === clerkId) {
+    throw new Error('clerks cannot approve their own return requests');
+  }
+
   return {
     ...returnRequest,
     approvedBy: clerkId,
