@@ -19,6 +19,7 @@ function openReturn(order, lines) {
     orderId: order.id,
     lines,
     raisedAt: new Date().toISOString(),
+    status: 'OPEN', // Story 1
     approvedBy: null,
     approvedAt: null,
   };
