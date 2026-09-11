@@ -11,6 +11,11 @@
  * @returns {object} the new return request
  */
 function openReturn(order, lines) {
+  
+  if (!order || !order.id) {
+    throw new Error('a return must reference a valid order');
+  }
+  
   if (lines.length === 0) {
     throw new Error('a return must cover at least one line');
   }
