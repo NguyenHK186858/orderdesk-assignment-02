@@ -24,6 +24,7 @@ function openReturn(order, lines) {
     orderId: order.id,
     lines,
     raisedAt: new Date().toISOString(),
+    status: 'OPEN', // Story 1
     approvedBy: null,
     approvedAt: null,
   };
@@ -40,6 +41,7 @@ function approve(returnRequest, clerkId, reason) {
 
   return {
     ...returnRequest,
+    status: 'APPROVED', // Story 2
     approvedBy: clerkId,
     approvedAt: new Date().toISOString(),
     reason,
