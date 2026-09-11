@@ -32,6 +32,7 @@ function approve(returnRequest, clerkId, reason) {
 
   return {
     ...returnRequest,
+    status: 'APPROVED', // Story 2
     approvedBy: clerkId,
     approvedAt: new Date().toISOString(),
     reason,
