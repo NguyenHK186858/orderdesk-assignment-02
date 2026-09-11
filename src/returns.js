@@ -11,6 +11,11 @@
  * @returns {object} the new return request
  */
 function openReturn(order, lines) {
+  
+  if (!order || !order.id) {
+    throw new Error('a return must reference a valid order');
+  }
+  
   if (lines.length === 0) {
     throw new Error('a return must cover at least one line');
   }
@@ -25,9 +30,14 @@ function openReturn(order, lines) {
   };
 }
 
+// RESOLUTION COMMENT: Merged status tracking from Story 1 with order validation and self-approval checks from Story 2 to preserve functionality of both stories.
 function approve(returnRequest, clerkId, reason) {
   if (!reason) {
     throw new Error('a refund approval must carry a reason');
+  }
+
+  if (returnRequest.raisedBy === clerkId) {
+    throw new Error('clerks cannot approve their own return requests');
   }
 
   return {
