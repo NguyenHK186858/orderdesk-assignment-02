@@ -30,6 +30,7 @@ function openReturn(order, lines) {
   };
 }
 
+// RESOLUTION COMMENT: Merged status tracking from Story 1 with order validation and self-approval checks from Story 2 to preserve functionality of both stories.
 function approve(returnRequest, clerkId, reason) {
   if (!reason) {
     throw new Error('a refund approval must carry a reason');
